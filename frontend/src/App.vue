@@ -1,30 +1,26 @@
 <template>
   <div id="app">
-    <header>
-      <img alt="Vue logo" src="./assets/logo.png" id="logo" />
-      <h1>Scopibox</h1>
-    </header>
-    <Video videoURL="https://www.youtube.com/embed/3gGpRiV09uU" />
+    <Header />
+    <div id="content">
+      <Video videoURL="https://www.youtube.com/embed/3gGpRiV09uU" />
+    </div>
   </div>
 </template>
 
 <script>
 import Video from "./components/Video.vue";
+import Header from "./components/Header";
 
 export default {
   name: "App",
   components: {
+    Header,
     Video,
   },
 };
 </script>
 
 <style>
-header {
-  display: inline;
-  float: left;
-}
-
 #app {
   font-family: Roboto;
   font-weight: lighter;
@@ -33,10 +29,18 @@ header {
   text-align: center;
   color: #fc8910;
   margin-top: 60px;
+
+  display: grid;
+  grid-template: "header main";
+  grid-template-columns: 300px auto;
 }
 
-#logo {
-  width: 200px;
-  padding-right: 50px;
+header {
+  /* grid-area: header; */
+}
+
+#content {
+  /* grid-area: main; */
+  max-width: 80%;
 }
 </style>
