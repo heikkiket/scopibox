@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
+    <header>
+      <img alt="Vue logo" src="./assets/logo.png" id="logo" />
+      <h1>Scopibox</h1>
+    </header>
     <Video videoURL="https://www.youtube.com/embed/3gGpRiV09uU" />
   </div>
 </template>
@@ -17,12 +20,23 @@ export default {
 </script>
 
 <style>
+header {
+  display: inline;
+  float: left;
+}
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: Roboto;
+  font-weight: lighter;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #fc8910;
   margin-top: 60px;
+}
+
+#logo {
+  width: 200px;
+  padding-right: 50px;
 }
 </style>
