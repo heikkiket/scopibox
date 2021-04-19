@@ -1,17 +1,17 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <Video videoURL="https://www.youtube.com/embed/3gGpRiV09uU" />
   </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+import Video from "./components/Video.vue";
 
 export default {
   name: "App",
   components: {
-    HelloWorld,
+    Video,
   },
 };
 </script>
