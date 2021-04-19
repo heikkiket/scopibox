@@ -5,6 +5,13 @@
       <h1>Scopibox</h1>
     </header>
     <Video videoURL="https://www.youtube.com/embed/3gGpRiV09uU" />
+    <md-bottom-bar md-sync-route>
+      <md-bottom-bar-item
+        exact
+        md-label="Hello"
+        md-icon="home"
+      ></md-bottom-bar-item>
+    </md-bottom-bar>
   </div>
 </template>
 
