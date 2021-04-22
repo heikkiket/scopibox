@@ -1,10 +1,10 @@
+type Query {
+  randomVideo: Video
+}
+
 type Video {
   url: String
   embedUrl: String
   title: String
   description: String
-}
-
-type Query {
-  ramdomVideo: Video
 }

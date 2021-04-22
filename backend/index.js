@@ -12,7 +12,7 @@ import mongoose from "./db/index.js";
     mongoose.on("connected", () => {
       app.listen({ port: process.env.PORT }, () =>
         console.log(
-          `Server running at http://localhost:${process.env.PORT}${server.graphqlPath}`
+          `Server running at http://localhost:${process.env.PORT}${apolloServer.graphqlPath}`
         )
       );
     });
