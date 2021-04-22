@@ -3,10 +3,12 @@
   "version": "0.0.1",
   "description": "A backend for video jukebpx",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "nodemon --exec mocha",
+    "härmä_test": "nodemon test.js"
   },
   "author": "Heikki Ketoharju",
   "license": "GPL-3.0",
@@ -14,9 +16,14 @@
     "dotenv": "^8.2.0",
     "eslint": "^7.24.0",
     "express": "^4.17.1",
+    "mongoose": "^5.12.5",
     "nodemon": "^2.0.7"
   },
   "devDependencies": {
-    "eslint-config-prettier": "^8.2.0"
+    "chai": "^4.3.4",
+    "eslint-config-prettier": "^8.2.0",
+    "mocha": "^8.3.2",
+    "mongodb-memory-server": "^6.9.6",
+    "sinon": "^10.0.0"
   }
 }
