@@ -3,3 +3,4 @@
 *.el
 *.env
 /utils/scopiboxDbs.js
+/node_modules/
