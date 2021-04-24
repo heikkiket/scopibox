@@ -15,8 +15,13 @@ export default {
     Header,
     Video,
   },
+  mounted() {
+    this.$store.dispatch("getRandomVideo");
+  },
   computed: {
-    videoURL: () => "https://www.youtube.com/embed/3gGpRiV09uU",
+    videoURL() {
+      return this.$store.state.videoURL;
+    },
   },
 };
 </script>

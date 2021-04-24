@@ -1,6 +1,8 @@
 <template>
   <div id="video-player">
+    <p v-if="!videoURL">No video to show.</p>
     <iframe
+      v-else
       width="560"
       height="315"
       :src="videoURL"
