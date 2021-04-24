@@ -14,19 +14,19 @@
   "license": "GPL-3.0",
   "dependencies": {
     "apollo-server": "^2.23.0",
+    "apollo-server-express": "^2.23.0",
     "dotenv": "^8.2.0",
     "eslint": "^7.24.0",
     "express": "^4.17.1",
     "graphql": "^15.5.0",
-    "mongoose": "^5.12.5",
-    "nodemon": "^2.0.7"
+    "mongoose": "^5.12.5"
   },
   "devDependencies": {
-    "apollo-server-express": "^2.23.0",
     "chai": "^4.3.4",
     "eslint-config-prettier": "^8.2.0",
     "mocha": "^8.3.2",
     "mongodb-memory-server": "^6.9.6",
+    "nodemon": "^2.0.7",
     "sinon": "^10.0.0"
   }
 }
