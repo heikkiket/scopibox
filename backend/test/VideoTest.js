@@ -4,31 +4,43 @@ import sinon from "sinon";
 import VideoCtrl from "../controllers/VideoController.js";
 import Video from "./mocks/Video.js";
 
-describe("Video Controller", function () {
-  const createRandArr = () => {
-    return [
-      VideoCtrl.findRandom(),
-      VideoCtrl.findRandom(),
-      VideoCtrl.findRandom(),
-      VideoCtrl.findRandom(),
-      VideoCtrl.findRandom(),
-      VideoCtrl.findRandom(),
-    ];
-  }
+describe("findRandom", async function () {
+  const createRandArr = async () =>
+    Promise.all(
+      Array.from({ length: 8 }, async () => await VideoCtrl.findRandom())
+    );
 
-  it("should return one video", function () {
-    expect(VideoCtrl.findRandom()).to.be.an("object");
+  it("should return one video", async function () {
+    const video = await VideoCtrl.findRandom();
+    expect(video).to.be.an("object");
+    expect(video).to.have.a.property("title");
   });
 
   it("should not return empty", function () {
-    const arr = createRandArr()
-
+    const arr = createRandArr();
     expect(arr).to.not.include({});
   });
 
-  it("should return different videos", function () {
-    const arr = createRandArr()
-    const set = new Set(arr.map((o) => o.title));
+  it("should return different videos", async function () {
+    const randomVideos = await createRandArr();
+    const set = new Set(randomVideos.map((v) => v.title));
     expect(set).to.have.lengthOf.above(1);
+  });
+});
+
+describe("createVideo", async function () {
+  it("Should return a Video", async function () {
+    const saved = await VideoCtrl.addVideo();
+    expect(saved).to.be.an("object");
+    expect(saved).to.be.an.instanceOf(Video);
+  });
+
+  it("Saves the right parameters", async function () {
+    const saved = await VideoCtrl.addVideo({
+      title: "testTitle",
+      url: "http://test",
+    });
+    expect(saved).to.have.a.property("title", "testTitle")
+    expect(saved).to.have.a.property("url", "http://test")
   });
 });

@@ -2,6 +2,10 @@ type Query {
   randomVideo: Video
 }
 
+type Mutation {
+  addVideo(title: String, url: String): Video
+}
+
 type Video {
   url: String
   embedUrl: String
