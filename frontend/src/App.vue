@@ -1,9 +1,7 @@
 <template>
   <div id="app">
     <Header />
-    <div id="content">
-      <Video videoURL="https://www.youtube.com/embed/3gGpRiV09uU" />
-    </div>
+    <div id="content"><Video :videoURL="videoURL" /></div>
   </div>
 </template>
 
@@ -16,6 +14,9 @@ export default {
   components: {
     Header,
     Video,
+  },
+  computed: {
+    videoURL: () => "https://www.youtube.com/embed/3gGpRiV09uU",
   },
 };
 </script>
@@ -35,12 +36,7 @@ export default {
   grid-template-columns: 300px auto;
 }
 
-header {
-  /* grid-area: header; */
-}
-
 #content {
-  /* grid-area: main; */
   max-width: 80%;
 }
 </style>
