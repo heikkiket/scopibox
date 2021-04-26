@@ -4,6 +4,8 @@ type Query {
 
 type Mutation {
   addVideo(title: String, url: String): Video
+  login(username: String!, password: String!): UserLogin
+  signup(user: UserInput): User
 }
 
 type Video {
@@ -11,4 +13,28 @@ type Video {
   embedUrl: String
   title: String
   description: String
+}
+
+type User {
+  name: String
+  username: String
+  password: String
+  userType: UserType
+}
+
+type UserLogin {
+  user: User
+  token: String
+}
+
+input UserInput {
+  name: String
+  username: String
+  password: String
+  userType: UserType
+}
+
+enum UserType {
+  BASIC,
+  ADMIN
 }
