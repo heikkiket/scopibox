@@ -1,7 +1,7 @@
 import "./config.js";
 
 import app from "./app.js";
-import createApollo from "./apollo.js";
+import createApollo from "./apollo/index.js";
 import mongoose from "./db/index.js";
 
 (async () => {

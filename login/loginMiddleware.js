@@ -3,7 +3,24 @@ import jwt from "jsonwebtoken";
 
 import User from "../models/User.js";
 
-const tokenExpirationTime = 60;
+const tokenExpirationTime = '1d';
+
+const validateJwt = async (token) => {
+  try {
+    const payload = await jwt.verify(
+      token,
+      process.env.SECRET,
+      (err, decoded) => {
+        if (err) throw err;
+        return decoded;
+      }
+    );
+    return payload;
+  } catch (e) {
+    console.log(e);
+    return null
+  }
+}
 
 const detectLogin = async (username, password) => {
   let users = await User.find({ username: username, password: password });
@@ -46,12 +63,12 @@ const login = async (username, password, done) => {
 
 const authenticate = async (payload, done) => {
   if(!payload)
-    return done(new Error(), null)
+    return done(new Error("Empty token payload"), null)
   const user = await findUser(payload.username);
   if (user) {
     return done(null, user)
   }
-  return done(new Error(), null)
+  return done(new Error("No loggedin user"), null)
 };
 
-export { login, authenticate };
+export { login, authenticate, validateJwt };

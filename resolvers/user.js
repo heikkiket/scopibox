@@ -1,14 +1,13 @@
 export default {
   Mutation: {
     login: async (parent, { username, password }, context) => {
-      const { user } = await context.authenticate("graphql-local", {
+      const payload = await context.login({
         username,
         password,
       });
-      return user;
+      return payload
     },
     signup: (parent, args) => {
-      console.log(args);
       return args.user;
     },
   },
