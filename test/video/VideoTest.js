@@ -1,8 +1,8 @@
 import { expect } from "chai";
 import sinon from "sinon";
 
-import VideoCtrl from "../controllers/VideoController.js";
-import Video from "./mocks/Video.js";
+import VideoCtrl from "../../controllers/VideoController.js";
+import Video from "../mocks/Video.js";
 
 describe("findRandom", async function () {
   const createRandArr = async () =>

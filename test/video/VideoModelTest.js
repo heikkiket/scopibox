@@ -1,7 +1,7 @@
 import assert from "assert";
 
-import dbHandler from "./db-handler.js";
-import Video from "../models/Video.js";
+import dbHandler from "../db-handler.js";
+import Video from "../../models/Video.js";
 
 describe("Video Model", function () {
   before(function () {
