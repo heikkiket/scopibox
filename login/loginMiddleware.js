@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 
 import User from "../models/User.js";
 
-const tokenExpirationTime = '1d';
+const tokenExpirationTime = 60;
 
 const validateJwt = async (token) => {
   try {

@@ -13,7 +13,7 @@ const buildContext = ({ req, res }) => ({
   },
   authenticate: async () => {
     const token = extractor(req)
-    return await authenticate(validateJwt(token), done);
+    return await authenticate(await validateJwt(token), done);
   },
 });
 export default buildContext;
