@@ -1,7 +1,16 @@
 <template>
   <div id="app">
     <Header />
-    <div id="content"><Video :videoURL="videoURL" /></div>
+    <div id="content">
+      <Video v-if="loggedin" :videoURL="videoURL" />
+      <div v-else>
+        <h1>Please log in.</h1>
+        <input v-model="username" type="text" />
+        <input v-model="password" type="text" />
+        <input @click="send" type="submit" />
+      </div>
+      <button @click="asdf">Ask video</button>
+    </div>
   </div>
 </template>
 
@@ -15,12 +24,32 @@ export default {
     Header,
     Video,
   },
+  data() {
+    return {
+      username: "",
+      password: "",
+    };
+  },
   mounted() {
     this.$store.dispatch("getRandomVideo");
   },
   computed: {
     videoURL() {
       return this.$store.state.videoURL;
+    },
+    loggedin() {
+      return this.$store.state.loggedin;
+    },
+  },
+  methods: {
+    send() {
+      this.$store.dispatch("sendLogin", {
+        username: this.username,
+        password: this.password,
+      });
+    },
+    asdf() {
+      this.$store.dispatch("getRandomVideo");
     },
   },
 };
