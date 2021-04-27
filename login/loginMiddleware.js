@@ -1,5 +1,6 @@
 import passport from "passport";
 import jwt from "jsonwebtoken";
+import { ForbiddenError } from 'apollo-server-errors'
 
 import User from "../models/User.js";
 
@@ -56,19 +57,19 @@ const payload = (users) => {
 
 const login = async (username, password, done) => {
   const users = await detectLogin(username, password);
-  const error = found(users) ? null : new Error("No matching user!");
+  const error = found(users) ? null : new ForbiddenError("No matching user!");
 
   return done(error, payload(users));
 };
 
 const authenticate = async (payload, done) => {
   if(!payload)
-    return done(new Error("Empty token payload"), null)
+    return done(new ForbiddenError("Empty token payload"), null)
   const user = await findUser(payload.username);
   if (user) {
     return done(null, user)
   }
-  return done(new Error("No loggedin user"), null)
+  return done(new ForbiddenError("No loggedin user"), null)
 };
 
 export { login, authenticate, validateJwt };
