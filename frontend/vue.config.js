@@ -1,5 +1,5 @@
 module.exports = {
-  outputDir: "../dist",
+  outputDir: "../public",
   devServer: {
     port: 8081,
   },
