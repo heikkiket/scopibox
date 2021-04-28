@@ -1,4 +1,4 @@
-# frontend
+# Scopibox frontend
 
 ## Project setup
 
@@ -12,7 +12,7 @@ npm install
 npm run serve
 ```
 
-### Compiles and minifies for production
+### Compiles and minifies for production. This also installs pwa things, so if testing statically built version, please run PWA version of the application with incognito mode in the browser.
 
 ```
 npm run build
