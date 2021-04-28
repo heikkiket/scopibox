@@ -2,6 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 
 import api from "./api.js";
+const scopiApi = api();
 
 Vue.use(Vuex);
 
@@ -14,10 +15,11 @@ export default new Vuex.Store({
   mutations: {
     login(state, payload) {
       state.loggedin = true;
-      window.token = payload.token;
+      scopiApi.setToken(payload.token);
     },
     logout(state) {
       state.loggedout = true;
+      scopiApi.setToken("");
     },
     video(state, payload) {
       state.videoURL = payload.url;
@@ -25,7 +27,7 @@ export default new Vuex.Store({
   },
   actions: {
     async getRandomVideo({ commit }) {
-      const result = await api(`query {randomVideo {title, url}}`);
+      const result = await scopiApi.call(`query {randomVideo {title, url}}`);
       const response = await result.json();
       const video = response.data.randomVideo;
 
@@ -33,7 +35,7 @@ export default new Vuex.Store({
     },
     async sendLogin({ commit }, payload) {
       const { username, password } = payload;
-      const result = await api(
+      const result = await scopiApi.call(
         `mutation login($username: String!, $password: String!) {login(username: $username, password: $password ) {user {username} token}} `,
         { username, password }
       );
