@@ -1,4 +1,4 @@
-const endpoint = "http://localhost:8081/graphql/";
+const endpoint = process.env.VUE_APP_API_URL;
 
 const buildGeneral = (payload) => JSON.stringify(payload);
 
