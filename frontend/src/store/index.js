@@ -18,7 +18,7 @@ export default new Vuex.Store({
       scopiApi.setToken(payload.token);
     },
     logout(state) {
-      state.loggedout = true;
+      state.loggedin = false;
       scopiApi.setToken("");
     },
     video(state, payload) {
@@ -42,6 +42,9 @@ export default new Vuex.Store({
       const json = await result.json();
       if (json.data.login.token)
         commit("login", { token: json.data.login.token });
+    },
+    async logout({ commit }) {
+      commit("logout");
     },
   },
   modules: {},

@@ -2,12 +2,18 @@
   <header>
     <img alt="Scopibox logo" src="../assets/logo.png" id="logo" />
     <h1>Scopibox</h1>
+    <button @click="logout">Logout</button>
   </header>
 </template>
 
 <script>
 export default {
   name: "Header",
+  methods: {
+    logout() {
+      this.$store.dispatch("logout");
+    },
+  },
 };
 </script>
 

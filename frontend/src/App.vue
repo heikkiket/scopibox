@@ -2,27 +2,23 @@
   <div id="app">
     <Header />
     <div id="content">
-      <Video v-if="loggedin" :videoURL="videoURL" />
-      <div v-else>
-        <h1>Please log in.</h1>
-        <input v-model="username" type="text" />
-        <input v-model="password" type="text" />
-        <input @click="send" type="submit" />
-      </div>
-      <button @click="asdf">Ask video</button>
+      <Login v-if="loggedout" />
+      <Main v-else />
     </div>
   </div>
 </template>
 
 <script>
-import Video from "./components/Video.vue";
 import Header from "./components/Header";
+import Login from "./components/Login.vue";
+import Main from "./views/Main.vue";
 
 export default {
   name: "App",
   components: {
     Header,
-    Video,
+    Main,
+    Login,
   },
   data() {
     return {
@@ -30,26 +26,9 @@ export default {
       password: "",
     };
   },
-  mounted() {
-    this.$store.dispatch("getRandomVideo");
-  },
   computed: {
-    videoURL() {
-      return this.$store.state.videoURL;
-    },
-    loggedin() {
-      return this.$store.state.loggedin;
-    },
-  },
-  methods: {
-    send() {
-      this.$store.dispatch("sendLogin", {
-        username: this.username,
-        password: this.password,
-      });
-    },
-    asdf() {
-      this.$store.dispatch("getRandomVideo");
+    loggedout() {
+      return !this.$store.state.loggedin;
     },
   },
 };
