@@ -1,5 +1,8 @@
 <template>
-  <Video :videoURL="videoURL" />
+  <div>
+    <button @click="logout">Logout</button>
+    <Video :videoURL="videoURL" />
+  </div>
 </template>
 
 <script>
@@ -11,6 +14,11 @@ export default {
   },
   mounted() {
     this.$store.dispatch("getRandomVideo");
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch("logout");
+    },
   },
   computed: {
     videoURL() {

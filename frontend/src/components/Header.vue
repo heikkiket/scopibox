@@ -1,19 +1,12 @@
 <template>
   <header>
     <img alt="Scopibox logo" src="../assets/logo.png" id="logo" />
-    <h1>Scopibox</h1>
-    <button @click="logout">Logout</button>
   </header>
 </template>
 
 <script>
 export default {
   name: "Header",
-  methods: {
-    logout() {
-      this.$store.dispatch("logout");
-    },
-  },
 };
 </script>
 
@@ -23,11 +16,20 @@ header {
 }
 
 #logo {
-  width: 200px;
+  width: 500px;
   transition: transform 10s;
+  margin: 3em;
+  display: block;
 }
 
 #logo:hover {
   transform: rotate(-180deg);
+}
+
+@media screen and (max-width: 500px) {
+  #logo {
+    width: 200px;
+    margin: 2rem auto;
+  }
 }
 </style>

@@ -42,14 +42,27 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #fc8910;
-  margin-top: 60px;
 
   display: grid;
   grid-template: "header main";
-  grid-template-columns: 300px auto;
+  grid-template-columns: 40% auto;
 }
 
 #content {
   max-width: 80%;
+}
+
+@media screen and (max-width: 500px) {
+  #app {
+    grid-template:
+      "header"
+      "main";
+    grid-template-rows: 70px auto;
+  }
+
+    #content {
+        max-width: 95%;
+        margin: auto;
+    }
 }
 </style>
