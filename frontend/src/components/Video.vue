@@ -3,6 +3,7 @@
     <p v-if="!videoURL">No video to show.</p>
     <iframe
       v-else
+      class="md-image"
       width="560"
       height="315"
       :src="videoURL"
