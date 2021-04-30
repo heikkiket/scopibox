@@ -1,31 +1,14 @@
-import passport from "passport";
-import jwt from "jsonwebtoken";
-import { ForbiddenError } from 'apollo-server-errors'
+import { ForbiddenError } from "apollo-server-errors";
 
 import User from "../models/User.js";
-
-const tokenExpirationTime = 60;
-
-const validateJwt = async (token) => {
-  try {
-    const payload = await jwt.verify(
-      token,
-      process.env.SECRET,
-      (err, decoded) => {
-        if (err) throw err;
-        return decoded;
-      }
-    );
-    return payload;
-  } catch (e) {
-    console.log(e);
-    return null
-  }
-}
+import { createJwt, validateJwt } from "./jwt.js";
+import { check } from './password.js';
 
 const detectLogin = async (username, password) => {
-  let users = await User.find({ username: username, password: password });
-  return filteredUsers(users);
+  let users = await User.find({ username: username });
+  if(found(users) && await check(password, users[0].password))
+    return filteredUsers(users);
+  else return []
 };
 
 const filteredUsers = (users) => {
@@ -34,18 +17,14 @@ const filteredUsers = (users) => {
     return u;
   });
 };
+
 const findUser = async (username) => {
   const user = await User.find({ username: username });
-  if (user.length === 1) return filteredUsers(user).shift();
+  if (found(user)) return filteredUsers(user).shift();
   else return false;
 };
 
 const found = (users) => users.length === 1;
-
-const createJwt = (user) =>
-  jwt.sign(user, process.env.SECRET, {
-    expiresIn: tokenExpirationTime,
-  });
 
 const payload = (users) => {
   if (found(users)) {
@@ -63,13 +42,12 @@ const login = async (username, password, done) => {
 };
 
 const authenticate = async (payload, done) => {
-  if(!payload)
-    return done(new ForbiddenError("Empty token payload"), null)
+  if (!payload) return done(new ForbiddenError("Empty token payload"), null);
   const user = await findUser(payload.username);
   if (user) {
-    return done(null, user)
+    return done(null, user);
   }
-  return done(new ForbiddenError("No loggedin user"), null)
+  return done(new ForbiddenError("No loggedin user"), null);
 };
 
 export { login, authenticate, validateJwt };

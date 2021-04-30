@@ -2,6 +2,7 @@ import chai from "chai";
 
 import sinon from "sinon";
 import chaiAsPromised from "chai-as-promised";
+import bcrypt from "bcrypt";
 
 const expect = chai.expect;
 
@@ -71,6 +72,6 @@ describe("Authenticate", function () {
     const user = { username: "testuser" };
     await authenticate(user, done);
     expect(done.firstArg).to.be.null;
-    expect(done.lastArg).to.have.property("username")
+    expect(done.lastArg).to.have.property("username");
   });
 });

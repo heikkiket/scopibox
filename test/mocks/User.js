@@ -5,11 +5,11 @@ sinon.stub(User, "find").callsFake(function (args) {
   const users = [
     {
       username: "testuser",
-      password: "testpass",
+      //testpass
+      password: "$2b$12$HDPBuW1L3SqCHsIq10ukAOrmGG1kBIVZ/lxVPUvEFPUq0CLtYt1oe",
     },
   ].filter(u => u.username === args.username );
-  if(args.password)
-    return users.filter(u => u.password === args.password)
+
   return users;
 });
 
