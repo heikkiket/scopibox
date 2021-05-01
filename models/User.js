@@ -1,16 +1,20 @@
 import mongoose from "mongoose";
 
-import {encrypt} from '../login/password.js';
+import { encrypt } from "../login/password.js";
 
-const schema = new mongoose.Schema({username: String, password: String});
+const schema = new mongoose.Schema({ username: String, password: String });
 
-const cryptPw = async function(user) {
-  console.log(this.password)
-  this.password = await encrypt(this.password)
-  console.log(this.password)
-}
+const cryptPw = async function (user) {
+  this.password = await encrypt(this.password);
+};
 
-schema.pre('save', cryptPw);
+const removePw = function () {
+  this.password = undefined;
+};
+
+schema.pre("save", cryptPw);
+schema.post("find", removePw);
+schema.post("save", removePw);
 
 const User = mongoose.model("User", schema);
 
