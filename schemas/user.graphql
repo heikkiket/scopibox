@@ -1,0 +1,28 @@
+extend type Mutation {
+  login(username: String!, password: String!): UserLogin
+  signup(user: UserInput): User
+}
+
+type User {
+  name: String
+  username: String
+  password: String
+  userType: UserType
+}
+
+type UserLogin {
+  user: User
+  token: String
+}
+
+input UserInput {
+  name: String
+  username: String!
+  password: String!
+  userType: UserType
+}
+
+enum UserType {
+  BASIC,
+  ADMIN
+}
