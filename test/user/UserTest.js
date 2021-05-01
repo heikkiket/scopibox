@@ -33,5 +33,4 @@ describe("Signup", function () {
     expect(signedup).to.have.a.property("username");
     expect(signedup).to.have.a.property("_id");
   });
-
 });
