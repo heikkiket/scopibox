@@ -1,3 +1,4 @@
+import UserController from "../controllers/UserController.js";
 export default {
   Mutation: {
     login: async (parent, { username, password }, context) => {
@@ -5,10 +6,10 @@ export default {
         username,
         password,
       });
-      return payload
+      return payload;
     },
-    signup: (parent, args) => {
-      return args.user;
+    signup: async (parent, args) => {
+      return await UserController.signup(args.user);
     },
   },
 };

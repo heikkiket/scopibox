@@ -13,4 +13,8 @@ sinon.stub(User, "find").callsFake(function (args) {
   return users;
 });
 
+sinon.stub(User.prototype, "save").callsFake(async function (args) {
+  return this;
+})
+
 export default User;
