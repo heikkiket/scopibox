@@ -2,7 +2,9 @@ import { expect } from "chai";
 import sinon from "sinon";
 
 import VideoCtrl from "../../controllers/VideoController.js";
-import Video from "../mocks/Video.js";
+import setup from "../mocks/Video.js";
+
+const Video = setup();
 
 describe("findRandom", async function () {
   const createRandArr = async () =>
@@ -26,9 +28,14 @@ describe("findRandom", async function () {
     const set = new Set(randomVideos.map((v) => v.title));
     expect(set).to.have.lengthOf.above(1);
   });
+
+  after(function () {
+    sinon.restore();
+  });
 });
 
 describe("createVideo", async function () {
+  const Video = setup();
   it("Should return a Video", async function () {
     const saved = await VideoCtrl.addVideo();
     expect(saved).to.be.an("object");
@@ -40,7 +47,11 @@ describe("createVideo", async function () {
       title: "testTitle",
       url: "http://test",
     });
-    expect(saved).to.have.a.property("title", "testTitle")
-    expect(saved).to.have.a.property("url", "http://test")
+    expect(saved).to.have.a.property("title", "testTitle");
+    expect(saved).to.have.a.property("url", "http://test");
+  });
+
+  after(function () {
+    sinon.restore();
   });
 });
