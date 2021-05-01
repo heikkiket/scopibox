@@ -21,6 +21,12 @@
 
 <script>
 export default {
+  data() {
+    return {
+      username: "",
+      password: "",
+    };
+  },
   methods: {
     send(e) {
       e.preventDefault();
