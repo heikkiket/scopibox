@@ -3,17 +3,18 @@ import sinon from "sinon";
 
 import VideoCtrl from "../../controllers/VideoController.js";
 import setup from "../mocks/Video.js";
+import User from "../mocks/User.js";
 
 const Video = setup();
 
 describe("findRandom", async function () {
   const createRandArr = async () =>
     Promise.all(
-      Array.from({ length: 8 }, async () => await VideoCtrl.findRandom())
+      Array.from({ length: 8 }, async () => await VideoCtrl.findRandom(new User()))
     );
 
   it("should return one video", async function () {
-    const video = await VideoCtrl.findRandom();
+    const video = await VideoCtrl.findRandom(new User());
     expect(video).to.be.an("object");
     expect(video).to.have.a.property("title");
   });

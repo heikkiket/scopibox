@@ -12,12 +12,14 @@ import UserCtrl, { UserError } from "../../controllers/UserController.js";
 import { login, authenticate } from "../../login/loginMiddleware.js";
 
 describe("User login", function () {
+
   it("should require parameters", async function () {
     await expect(
       UserCtrl.login(),
       "Should fail without parameters"
     ).to.be.rejectedWith(UserError);
   });
+
   it("should accept only certain keys", async function () {
     await expect(
       UserCtrl.login({ foo: 1, bar: 2 }),

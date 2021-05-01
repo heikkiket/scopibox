@@ -2,7 +2,11 @@ import mongoose from "mongoose";
 
 import { encrypt } from "../login/password.js";
 
-const schema = new mongoose.Schema({ username: String, password: String });
+const schema = new mongoose.Schema({
+  username: String,
+  password: String,
+  history: [{ title: String, url: String, date: Date }],
+});
 
 const cryptPw = async function (user) {
   this.password = await encrypt(this.password);

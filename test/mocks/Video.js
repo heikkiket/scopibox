@@ -25,7 +25,7 @@ const setup = () => {
   });
 
   sinon.stub(Video.prototype, "save").callsFake(function () {
-    return new Video({ title: this.title, url: this.url });
+    return this;
   });
 
   return Video;
