@@ -1,7 +1,6 @@
 <template>
   <header>
     <img alt="Scopibox logo" src="../assets/logo.png" id="logo" />
-    <h1>Scopibox</h1>
   </header>
 </template>
 
@@ -13,15 +12,14 @@ export default {
 
 <style scoped>
 header {
-  text-align: left;
-  width: 900px;
+  text-align: center;
 }
 
 #logo {
-  width: 200px;
+  width: 500px;
   transition: transform 10s;
   margin: 3em;
-  display: inline;
+  display: block;
 }
 
 #logo:hover,
@@ -32,17 +30,16 @@ header {
 h1 {
   font-size: 8rem;
   margin-bottom: 6rem;
-  display: inline;
 }
 
 @media screen and (max-width: 500px) {
   #logo {
-    width: 80px;
+    width: 200px;
     margin: 2rem;
   }
 
   h1 {
-    font-size: 3rem;
+    font-size: 4rem;
   }
 }
 </style>
