@@ -7,19 +7,19 @@ const setup = () => {
     return [
       {
         title: "foo",
-        url: "http://",
+        url: "http://1",
       },
       {
         title: "bar",
-        url: "http://",
+        url: "http://2",
       },
       {
         title: "baz",
-        url: "http://",
+        url: "http://3",
       },
       {
         title: "fox",
-        url: "http://",
+        url: "http://4",
       },
     ];
   });

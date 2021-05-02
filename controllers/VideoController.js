@@ -7,7 +7,7 @@ const random = function (max) {
 
 const findRandom = async (user) => {
   const notInHistory = (video) =>
-    !user.history.find((viewed) => viewed.title === video.title);
+    !user.history.find((viewed) => viewed.url === video.url);
 
   const videos = await Video.find();
   const unseen = videos.filter(notInHistory);
