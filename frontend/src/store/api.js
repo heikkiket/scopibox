@@ -18,7 +18,7 @@ export default function () {
         ...authorization(),
       },
       body: fn,
-    });
+    }).then(async (result) => await result.json());
 
   const authorization = () => {
     if (token) return { Authorization: "Bearer ".concat(token) };
@@ -33,5 +33,6 @@ export default function () {
       return doFetch(buildQuery(query));
     },
     setToken,
+    collectCodes: (errors) => errors.map((e) => e.extensions.code),
   };
 }

@@ -27,11 +27,14 @@ export default new Vuex.Store({
   },
   actions: {
     async getRandomVideo({ commit }) {
-      const result = await scopiApi.call(`query {randomVideo {title, url}}`);
-      const response = await result.json();
-      const video = response.data.randomVideo;
-
-      commit("video", video);
+      const response = await scopiApi.call(`query {randomVideo {title, url}}`);
+      if (response.errors) {
+        if (scopiApi.collectCodes(response.errors).includes("FORBIDDEN"))
+          this.dispatch("logout");
+      } else {
+        const video = response.data.randomVideo;
+        commit("video", video);
+      }
     },
     async sendLogin({ commit }, payload) {
       const { username, password } = payload;
@@ -39,9 +42,8 @@ export default new Vuex.Store({
         `mutation login($username: String!, $password: String!) {login(username: $username, password: $password ) {user {username} token}} `,
         { username, password }
       );
-      const json = await result.json();
-      if (json.data.login.token)
-        commit("login", { token: json.data.login.token });
+      if (result.data.login.token)
+        commit("login", { token: result.data.login.token });
     },
     async logout({ commit }) {
       commit("logout");
