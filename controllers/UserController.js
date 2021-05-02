@@ -22,10 +22,10 @@ export default {
     });
   },
   signup: async (args) => {
-    const { username, password } = args;
+    const { username, password, name } = args;
     if (username == undefined || password == undefined)
       throw new UserError("You should provide username and password");
-    const user = new User({ username: username, password: await encrypt(password) });
+    const user = new User({ name: name, username: username, password: await encrypt(password) });
     await user.save();
     return user;
   },

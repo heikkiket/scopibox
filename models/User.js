@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
 const schema = new mongoose.Schema({
+  name: String,
   username: String,
   password: String,
   history: [{ title: String, url: String, date: Date }],
