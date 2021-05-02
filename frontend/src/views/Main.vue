@@ -6,17 +6,21 @@
       <Video :videoURL="videoURL" />
       <button @click="getNew">Next video</button>
     </div>
+    <History id="history" />
   </div>
 </template>
 
 <script>
-import Video from "../components/Video.vue";
+import Video from "../components/Video";
 import Header from "../components/Header";
+import History from "../components/History";
+
 export default {
   name: "Main",
   components: {
     Video,
     Header,
+    History,
   },
   data() {
     return {
@@ -53,8 +57,8 @@ export default {
 
   display: grid;
   grid-template:
-    "header menu"
-    "main main"
+    "header menu menu"
+    "main history empty"
     / 40% auto;
 }
 
@@ -68,6 +72,16 @@ export default {
   margin: auto;
 }
 
+#history {
+  grid-area: history;
+}
+
 @media screen and (max-width: 500px) {
+  #grid {
+    grid-template:
+      "header"
+      "main"
+      "history" / 100%;
+  }
 }
 </style>
