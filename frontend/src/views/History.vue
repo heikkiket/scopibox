@@ -12,3 +12,10 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+@import "../styles/variables.scss";
+
+@media screen and (max-width: $breakpoint-mobile) {
+}
+</style>

@@ -42,22 +42,6 @@ export default {
 
 <style lang="scss" scoped>
 @import "../styles/variables.scss";
-#container {
-  font-family: Roboto;
-  font-weight: lighter;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #fc8910;
-
-  display: grid;
-  grid-template: "header main";
-  grid-template-columns: 30% auto;
-}
-
-#content {
-  max-width: 600px;
-}
 
 #login-form {
   max-width: 300px;
@@ -69,28 +53,8 @@ h1 {
 }
 
 @media screen and (max-width: $breakpoint-mobile) {
-  #container {
-    grid-template:
-      "header"
-      "main";
-  }
-
-  #header {
-    grid-area: header;
-    margin: 0 auto;
-  }
-
-  #content {
-    grid-area: main;
-    max-width: 95%;
-    margin: auto;
-  }
-
   #login-form {
     margin: 2rem auto;
-  }
-  h1 {
-    font-size: 4rem;
   }
 }
 </style>

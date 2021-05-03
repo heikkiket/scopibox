@@ -1,6 +1,6 @@
 <template>
   <div>
-      <h1 class="md-title">Your watched videos</h1>
+    <h1 class="md-title">Your watched videos</h1>
     <md-list v-for="video in videos" :key="video.url">
       <md-list-item>
         <md-icon>movie</md-icon>
@@ -26,4 +26,12 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.md-list {
+  width: 320px;
+  max-width: 100%;
+  display: block;
+  vertical-align: top;
+  border: 1px solid rgba(#000, 0.12);
+}
+</style>
