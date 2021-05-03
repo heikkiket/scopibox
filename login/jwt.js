@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 
-const tokenExpirationTime = 10;
+const tokenExpirationTime = 360;
 
 const validateJwt = async (token) => {
   try {
