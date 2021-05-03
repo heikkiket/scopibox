@@ -18,7 +18,7 @@ export default {
   components: {
     AppSkeleton,
     Video,
-    History
+    History,
   },
   data() {
     return {
@@ -42,5 +42,4 @@ export default {
   },
 };
 </script>
-<style scoped>
-</style>
+<style scoped></style>

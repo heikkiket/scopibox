@@ -67,12 +67,12 @@ export default {
 }
 
 #login-form {
-    max-width: 300px;
-    margin: 0 auto;
+  max-width: 300px;
+  margin: 0 auto;
 }
 
 h1 {
-    font-size: 8rem;
+  font-size: 8rem;
 }
 
 @media screen and (max-width: 500px) {

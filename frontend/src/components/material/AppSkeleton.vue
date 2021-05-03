@@ -4,7 +4,6 @@
       <md-app-toolbar class="md-large md-dense md-primary">
         <div class="md-toolbar-row">
           <div class="md-toolbar-section-start">
-
             <span class="md-title">{{ appName }}</span>
           </div>
 
