@@ -4,15 +4,29 @@ import store from "./store";
 import "./registerServiceWorker";
 
 import { MdButton, MdField } from "vue-material/dist/components";
+import {
+  MdApp,
+  MdToolbar,
+  MdDrawer,
+  MdList,
+  MdTabs,
+  MdContent,
+} from "vue-material/dist/components";
 import "vue-material/dist/vue-material.min.css";
 import "vue-material/dist/theme/default.css";
 
 Vue.use(MdButton);
 Vue.use(MdField);
+Vue.use(MdApp);
+Vue.use(MdToolbar);
+Vue.use(MdDrawer);
+Vue.use(MdList);
+Vue.use(MdTabs);
+Vue.use(MdContent);
 
 Vue.config.productionTip = false;
 
-new Vue({ 
+new Vue({
   store,
   render: (h) => h(App),
 }).$mount("#app");

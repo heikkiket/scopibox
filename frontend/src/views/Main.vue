@@ -1,40 +1,36 @@
 <template>
-  <div id="grid">
-    <Header id="header" />
+  <app-skeleton>
     <div id="content">
-      <button @click="logout">Logout</button>
       <Video :videoURL="videoURL" />
       <button @click="getNew">Next video</button>
     </div>
     <History id="history" />
-  </div>
+  </app-skeleton>
 </template>
 
 <script>
+import AppSkeleton from "../components/material/AppSkeleton";
 import Video from "../components/Video";
-import Header from "../components/Header";
 import History from "../components/History";
 
 export default {
   name: "Main",
   components: {
+    AppSkeleton,
     Video,
-    Header,
-    History,
+    History
   },
   data() {
     return {
       username: "",
       password: "",
+      menuVisible: false,
     };
   },
   mounted() {
     this.getNew();
   },
   methods: {
-    logout() {
-      this.$store.dispatch("logout");
-    },
     getNew() {
       this.$store.dispatch("getRandomVideo");
     },
@@ -47,41 +43,4 @@ export default {
 };
 </script>
 <style scoped>
-#grid {
-  font-family: Roboto;
-  font-weight: lighter;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #fc8910;
-
-  display: grid;
-  grid-template:
-    "header menu menu"
-    "main history empty"
-    / 40% auto;
-}
-
-#header {
-  grid-area: header;
-}
-
-#content {
-  grid-area: main;
-  max-width: 95%;
-  margin: auto;
-}
-
-#history {
-  grid-area: history;
-}
-
-@media screen and (max-width: 500px) {
-  #grid {
-    grid-template:
-      "header"
-      "main"
-      "history" / 100%;
-  }
-}
 </style>
