@@ -8,9 +8,9 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    videoURL: "",
+    video: "",
+    history: [],
     loggedin: false,
-    token: "",
   },
   mutations: {
     login(state, payload) {
@@ -22,7 +22,10 @@ export default new Vuex.Store({
       scopiApi.setToken("");
     },
     video(state, payload) {
-      state.videoURL = payload.url;
+      state.video = payload;
+    },
+    videoHistory(state, payload) {
+      state.history = payload;
     },
   },
   actions: {
@@ -36,10 +39,15 @@ export default new Vuex.Store({
         commit("video", video);
       }
     },
+    async getVideoHistory({ commit }) {
+      const response = await scopiApi.call(`query {videoHistory {title, url}}`);
+      const history = response.data.videoHistory;
+      commit("videoHistory", history);
+    },
     async sendLogin({ commit }, payload) {
       const { username, password } = payload;
       const result = await scopiApi.call(
-        `mutation login($username: String!, $password: String!) {login(username: $username, password: $password ) {user {username} token}} `,
+        "mutation login($username: String!, $password: String!) {login(username: $username, password: $password ) {user {username} token}} ",
         { username, password }
       );
       if (result.data.login.token)

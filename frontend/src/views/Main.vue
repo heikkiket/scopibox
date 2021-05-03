@@ -41,7 +41,7 @@ export default {
   },
   computed: {
     videoURL() {
-      return this.$store.state.videoURL;
+      return this.$store.state.video.url;
     },
   },
 };

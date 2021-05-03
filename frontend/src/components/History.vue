@@ -2,7 +2,7 @@
   <div>
     <h1>History</h1>
     <ul v-for="video in videos" :key="video.url">
-      <li><Video videoURL="video.url" /></li>
+      <li><Video :videoURL="video.url" /></li>
     </ul>
   </div>
 </template>
@@ -15,9 +15,12 @@ export default {
   components: {
     Video,
   },
+  mounted() {
+    this.$store.dispatch("getVideoHistory");
+  },
   computed: {
     videos() {
-      return [{ url: "foo" }, { url: "bar" }];
+      return this.$store.state.history;
     },
   },
 };
