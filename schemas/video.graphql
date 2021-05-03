@@ -1,6 +1,6 @@
 extend type Query {
   randomVideo: Video
-  videoHistory(): [Video]
+  videoHistory: [Video]
 }
 
 extend type Mutation {
