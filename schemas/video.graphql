@@ -1,5 +1,6 @@
 extend type Query {
   randomVideo: Video
+  videoHistory(user: ID!): [Video]
 }
 
 extend type Mutation {
@@ -12,4 +13,3 @@ type Video {
   title: String
   description: String
 }
-
