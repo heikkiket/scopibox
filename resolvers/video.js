@@ -7,7 +7,8 @@ export default {
       if (user) return await VideoCtrl.findRandom(user);
     },
     videoHistory: async (parent, args, context) => {
-      return await VideoCtrl.history();
+      const user = await context.authenticate();
+      if (user) return await VideoCtrl.history(user);
     },
   },
   Mutation: {

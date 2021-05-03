@@ -61,3 +61,36 @@ describe("User asking random videos", function () {
     expect(fifth).to.be.an("array").with.length(0);
   });
 });
+
+describe("User's video history", function () {
+  it("should require user", async function () {
+    const user = new User();
+    return expect(VideoCtrl.history())
+      .to.eventually.be.rejectedWith("No user defined!")
+      .and.be.an.instanceOf(Error);
+  });
+
+  it("should return an empty list", async function () {
+    const user = new User();
+    return expect(VideoCtrl.history(user))
+      .to.eventually.be.an("array")
+      .with.length(0);
+  });
+
+  it("should be not empty when watched videos", async function () {
+    const user = new User();
+    await VideoCtrl.findRandom(user);
+    return expect(VideoCtrl.history(user))
+      .to.eventually.be.an("array")
+      .with.length(1);
+  });
+
+  it("should contain actual videos", async function() {
+    const user = new User();
+    await VideoCtrl.findRandom(user);
+    const history = await VideoCtrl.history(user)
+    expect(history[0]).to.have.a.property("url")
+    expect(history[0]).to.have.a.property("title")
+  })
+
+});

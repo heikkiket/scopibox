@@ -20,5 +20,9 @@ const findRandom = async (user) => {
 };
 
 const addVideo = async (params) => await new Video(params).save();
+const history = async (user) => {
+  if (!user) throw new Error("No user defined!");
+  else return user.history;
+};
 
-export default { findRandom, addVideo };
+export default { findRandom, addVideo, history };
