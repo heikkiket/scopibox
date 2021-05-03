@@ -1,23 +1,23 @@
 <template>
   <div id="app">
-      <Login v-if="loggedout" />
-      <Main v-else />
+    <app-skeleton v-if="loggedin">
+      <router-view></router-view>
+    </app-skeleton>
+    <router-view v-else></router-view>
   </div>
 </template>
 
 <script>
-import Login from "./components/Login.vue";
-import Main from "./views/Main.vue";
+import AppSkeleton from "./components/material/AppSkeleton";
 
 export default {
   name: "App",
   components: {
-    Main,
-    Login,
+    AppSkeleton,
   },
   computed: {
-    loggedout() {
-      return !this.$store.state.loggedin;
+    loggedin() {
+      return this.$store.state.loggedin;
     },
   },
 };

@@ -17,8 +17,8 @@
 
         <div class="md-toolbar-row">
           <md-tabs class="md-primary">
-            <md-tab id="tab-home" md-label="Home"></md-tab>
-            <md-tab id="tab-pages" md-label="History"></md-tab>
+            <md-tab id="tab-home" md-label="Home" to="/home"></md-tab>
+            <md-tab id="tab-pages" md-label="History" to="/history"></md-tab>
           </md-tabs>
         </div>
       </md-app-toolbar>
@@ -41,7 +41,7 @@ export default {
   },
   methods: {
     logout() {
-      this.$store.dispatch("logout");
+      this.$store.dispatch("logout").then(() => this.$router.push("/"));
     },
   },
 };

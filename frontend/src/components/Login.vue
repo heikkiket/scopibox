@@ -39,10 +39,12 @@ export default {
   methods: {
     send(e) {
       e.preventDefault();
-      this.$store.dispatch("sendLogin", {
-        username: this.username,
-        password: this.password,
-      });
+      this.$store
+        .dispatch("sendLogin", {
+          username: this.username,
+          password: this.password,
+        })
+        .then(() => this.$router.push("home"));
     },
   },
 };
