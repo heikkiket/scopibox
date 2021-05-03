@@ -91,3 +91,9 @@ query {
   }
 }
 ```
+
+## Testing
+
+I tried to write most of the backend by using test-driven development model. That made me go slower, because I had to study Mocha, Chai and friends. However, this also saved me from midnight debugging headache sessions.
+
+I'm not so pleased about the state I got this application to, but I think I learned a lot about JavaScript infrastructure and language features.
