@@ -12,7 +12,7 @@ A GraphQL playground is also available:[GraphQL playground](https://env-9844456.
 
 ## User instructions
 
-First, you have to create an user account. There's no registration form yet, so just do a sign up mutation in GraphQL playground.
+First, you have to create an user account. There's no registration form yet, so just do a sign up mutation in GraphQL playground. You can also use the demo user: demo/demo. But beware: someone else might use it also, at this very moment.
 
 After that, you can log in to the application.
 
