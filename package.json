@@ -8,6 +8,7 @@
     "start": "node index.js",
     "dev": "nodemon index.js",
     "test": "nodemon --exec mocha --recursive",
+    "single_test": "nodemon --exec mocha --recursive --grep $1",
     "härmä_test": "nodemon test.js"
   },
   "author": "Heikki Ketoharju",
