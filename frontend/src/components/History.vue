@@ -7,7 +7,9 @@
         <span class="md-list-item-text">{{ video.title }}</span>
       </md-list-item>
     </md-list>
-    <md-button class="md-accent md-raised">Empty history</md-button>
+    <md-button @click="emptyHistory" class="md-accent md-raised"
+      >Empty history</md-button
+    >
   </div>
 </template>
 
@@ -21,6 +23,11 @@ export default {
   computed: {
     videos() {
       return this.$store.state.history;
+    },
+  },
+  methods: {
+    emptyHistory() {
+      this.$store.dispatch("emptyVideoHistory");
     },
   },
 };

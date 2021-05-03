@@ -30,7 +30,7 @@ export default new Vuex.Store({
   },
   actions: {
     async getRandomVideo({ commit }) {
-      const response = await scopiApi.call(`query {randomVideo {title, url}}`);
+      const response = await scopiApi.query(`query {randomVideo {title, url}}`);
       if (response.errors) {
         if (scopiApi.collectCodes(response.errors).includes("FORBIDDEN"))
           this.dispatch("logout");
@@ -40,13 +40,26 @@ export default new Vuex.Store({
       }
     },
     async getVideoHistory({ commit }) {
-      const response = await scopiApi.call(`query {videoHistory {title, url}}`);
+      const response = await scopiApi.query(
+        `query {videoHistory {title, url}}`
+      );
       const history = response.data.videoHistory;
       commit("videoHistory", history);
     },
+    async emptyVideoHistory({ commit }) {
+      const response = await scopiApi.mutation(
+        "mutation { emptyVideoHistory }"
+      );
+      if (response.errors) {
+        if (scopiApi.collectCodes(response.errors).includes("FORBIDDEN"))
+          this.dispatch("logout");
+      }
+
+      if (response.data.emptyVideoHistory) commit("videoHistory", []);
+    },
     async sendLogin({ commit }, payload) {
       const { username, password } = payload;
-      const result = await scopiApi.call(
+      const result = await scopiApi.mutation(
         "mutation login($username: String!, $password: String!) {login(username: $username, password: $password ) {user {username} token}} ",
         { username, password }
       );

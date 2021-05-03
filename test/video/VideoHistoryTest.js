@@ -85,12 +85,31 @@ describe("User's video history", function () {
       .with.length(1);
   });
 
-  it("should contain actual videos", async function() {
+  it("should contain actual videos", async function () {
     const user = new User();
     await VideoCtrl.findRandom(user);
-    const history = await VideoCtrl.history(user)
-    expect(history[0]).to.have.a.property("url")
-    expect(history[0]).to.have.a.property("title")
-  })
+    const history = await VideoCtrl.history(user);
+    expect(history[0]).to.have.a.property("url");
+    expect(history[0]).to.have.a.property("title");
+  });
+});
 
+describe("Delete user's video history", function () {
+  it("should require user", async function () {
+    const user = new User();
+    return expect(VideoCtrl.emptyHistory())
+      .to.eventually.be.rejectedWith("No user defined!")
+      .and.be.an.instanceOf(Error);
+  });
+
+  it("should return false if no videos", function () {
+    const user = new User();
+    return expect(VideoCtrl.emptyHistory(user)).to.eventually.be.false;
+  });
+
+  it("should return true if removing succeeded", async function () {
+    const user = new User();
+    await VideoCtrl.findRandom(user);
+    return expect(VideoCtrl.emptyHistory(user)).to.eventually.be.true;
+  });
 });

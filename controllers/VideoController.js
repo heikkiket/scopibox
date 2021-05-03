@@ -24,5 +24,16 @@ const history = async (user) => {
   if (!user) throw new Error("No user defined!");
   else return user.history;
 };
+const emptyHistory = async (user) => {
+  if (!user) throw new Error("No user defined!");
 
-export default { findRandom, addVideo, history };
+  if (user.history.length > 0) {
+    user.history = [];
+    await user.save();
+    return true;
+  } else {
+    return false
+  }
+};
+
+export default { findRandom, addVideo, history, emptyHistory };

@@ -13,5 +13,9 @@ export default {
   },
   Mutation: {
     addVideo: async (parent, args) => await VideoCtrl.addVideo(args),
+    emptyVideoHistory: async (parent, args, context) => {
+      const user = await context.authenticate();
+      if (user) return await VideoCtrl.emptyHistory(user);
+    },
   },
 };

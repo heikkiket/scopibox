@@ -28,9 +28,12 @@ export default function () {
   const setToken = (incomingToken) => (token = incomingToken);
 
   return {
-    call: async (query, variables) => {
-      if (variables) return doFetch(buildMutation(query, variables));
+    query: async (query) => {
       return doFetch(buildQuery(query));
+    },
+    mutation: async(query, variables) => {
+      if (variables) return doFetch(buildMutation(query, variables));
+      return doFetch(buildMutation(query));
     },
     setToken,
     collectCodes: (errors) => errors.map((e) => e.extensions.code),
