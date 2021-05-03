@@ -4,3 +4,4 @@
 *.env
 /utils/scopiboxDbs.js
 /node_modules/
+/public/
