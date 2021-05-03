@@ -1,20 +1,20 @@
 <template>
   <div>
-    <h1>History</h1>
-    <ul v-for="video in videos" :key="video.url">
-      <li><Video :videoURL="video.url" /></li>
-    </ul>
+      <h1 class="md-title">Your watched videos</h1>
+    <md-list v-for="video in videos" :key="video.url">
+      <md-list-item>
+        <md-icon>movie</md-icon>
+        <span class="md-list-item-text">{{ video.title }}</span>
+      </md-list-item>
+    </md-list>
+    <md-button class="md-accent md-raised">Empty history</md-button>
   </div>
 </template>
 
 <script>
-import Video from "../components/Video";
-
 export default {
   name: "History",
-  components: {
-    Video,
-  },
+  components: {},
   mounted() {
     this.$store.dispatch("getVideoHistory");
   },
