@@ -1,5 +1,7 @@
 <template>
   <div id="content">
+      <h1 class="md-headline">Hello, {{ user }}!</h1>
+      <h2 class="md-subheading">Here's an excercise for you:</h2>
     <Video :videoURL="videoURL" />
     <button @click="getNew">Next video</button>
   </div>
@@ -21,7 +23,7 @@ export default {
     };
   },
   mounted() {
-    this.getNew();
+    if (!this.videoURL) this.getNew();
   },
   methods: {
     getNew() {
@@ -31,6 +33,9 @@ export default {
   computed: {
     videoURL() {
       return this.$store.state.video.url;
+    },
+    user() {
+      return this.$store.state.user;
     },
   },
 };

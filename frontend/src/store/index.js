@@ -11,10 +11,12 @@ export default new Vuex.Store({
     video: "",
     history: [],
     loggedin: false,
+    user: "",
   },
   mutations: {
     login(state, payload) {
       state.loggedin = true;
+      state.user = payload.user;
       scopiApi.setToken(payload.token);
     },
     logout(state) {
@@ -60,11 +62,14 @@ export default new Vuex.Store({
     async sendLogin({ commit }, payload) {
       const { username, password } = payload;
       const result = await scopiApi.mutation(
-        "mutation login($username: String!, $password: String!) {login(username: $username, password: $password ) {user {username} token}} ",
+        "mutation login($username: String!, $password: String!) {login(username: $username, password: $password ) {user {name username} token}} ",
         { username, password }
       );
       if (result.data.login.token)
-        commit("login", { token: result.data.login.token });
+        commit("login", {
+          token: result.data.login.token,
+          user: result.data.login.user.name,
+        });
     },
     async logout({ commit }) {
       commit("logout");
