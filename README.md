@@ -92,6 +92,11 @@ query {
 }
 ```
 
+## Screenshots
+
+![Sopibox login](/screenshots/scopibox-login.png ) 
+![Sopibox home screen](/screenshots/scopibox-home.png )
+![Sopibox history sreen](/screenshots/scopibox-history.png )
 ## Testing
 
 I tried to write most of the backend by using test-driven development model. That made me go slower, because I had to study Mocha, Chai and friends. However, this also saved me from midnight debugging headache sessions.
