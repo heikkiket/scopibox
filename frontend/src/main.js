@@ -13,7 +13,7 @@ import {
   MdContent,
 } from "vue-material/dist/components";
 import "vue-material/dist/vue-material.min.css";
-import "vue-material/dist/theme/default.css";
+import "./styles/theme.scss";
 import router from "./router";
 
 Vue.use(MdButton);
