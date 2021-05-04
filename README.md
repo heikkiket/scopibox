@@ -94,13 +94,13 @@ query {
 
 ## Screenshots
 
-Login screen:
+Login screen
 ![Sopibox login](/screenshots/scopibox-login.png ) 
 
-Home screen:
+Home screen
 ![Sopibox home screen](/screenshots/scopibox-home.png )
 
-History view:
+History view
 ![Sopibox history sreen](/screenshots/scopibox-history.png )
 
 ## Testing
