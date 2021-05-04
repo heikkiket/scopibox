@@ -26,6 +26,6 @@ export default {
 
 <style scoped>
 #video-player {
-  margin: 3em;
+  margin: 3em auto;
 }
 </style>
